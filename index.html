@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voto Consciente 2026 — Presidência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEEFE8;
+    --paper:#FAFAF5;
+    --ink:#171F1A;
+    --ink-soft:#5B665D;
+    --green:#0F5132;
+    --green-deep:#0A3A24;
+    --green-dim:#0F513218;
+    --gold:#B08D2B;
+    --line:#CFCBBC;
+    --shadow: 0 1px 2px rgba(23,31,26,0.04), 0 6px 20px rgba(23,31,26,0.05);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 400px at 15% -10%, #0F513210, transparent),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Header / Hero ---------- */
+  header.top{
+    padding:44px 24px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px;height:7px;border-radius:50%;
+    background:var(--green);
+    display:inline-block;
+  }
+  .brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(30px,5vw,44px);
+    letter-spacing:-0.015em;
+    line-height:1.05;
+    max-width:680px;
+  }
+  .brand em{
+    font-style:italic;
+    color:var(--green);
+    font-weight:500;
+  }
+  .subhead{
+    font-size:15px;
+    color:var(--ink-soft);
+    max-width:560px;
+    line-height:1.6;
+    margin:16px 0 30px;
+  }
+  .status-strip{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding:14px 0;
+  }
+  .status-strip b{color:var(--ink);}
+
+  nav.tabs{
+    display:flex;
+    gap:0;
+    max-width:1000px;
+    margin:28px auto 0;
+    padding:0 24px;
+    border-bottom:1px solid var(--line);
+  }
+  nav.tabs button{
+    padding:14px 22px;
+    background:none;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    letter-spacing:0.01em;
+    margin-bottom:-1px;
+  }
+  nav.tabs button.active{
+    color:var(--ink);
+    border-bottom-color:var(--green);
+  }
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:32px 24px 90px;
+  }
+  .view{display:none;}
+  .view.active{display:block; animation:fade .3s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---- Comparador ---- */
+  .tema-select{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .tema-select button{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    padding:9px 14px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink-soft);
+    border-radius:20px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .tema-select button:hover{border-color:var(--green);}
+  .tema-select button.active{
+    background:var(--green);
+    border-color:var(--green);
+    color:#fff;
+  }
+  .eixo-strip{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    padding:0 2px 14px;
+    margin-bottom:16px;
+    border-bottom:1px dashed var(--line);
+  }
+  .eixo-strip span:first-child::before{content:"◂ ";}
+  .eixo-strip span:last-child::after{content:" ▸";}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 20px;
+    margin-bottom:10px;
+    display:grid;
+    grid-template-columns:auto 120px 1fr 96px;
+    gap:16px;
+    align-items:center;
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{ box-shadow:0 2px 4px rgba(23,31,26,0.06), 0 10px 28px rgba(23,31,26,0.08); }
+
+  .avatar{
+    width:52px;height:52px;
+    border-radius:50%;
+    background:var(--green-dim);
+    color:var(--green-deep);
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    border:1px solid var(--green-dim);
+    flex-shrink:0;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .card .who .nome{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:15.5px;
+    line-height:1.25;
+  }
+  .card .who .partido{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .card .posicao{
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .card .posicao.pendente{
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .card .status{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:5px 9px;
+    border-radius:20px;
+    text-align:center;
+    white-space:nowrap;
+    justify-self:end;
+  }
+  .status.oficial{background:var(--green-dim);color:var(--green-deep);}
+  .status.provisorio{background:#B08D2B22;color:var(--gold);}
+  .status.pendente-tag{background:#CFCBBC55;color:var(--ink-soft);}
+
+  /* ---- Quiz ---- */
+  .quiz-progress-wrap{
+    margin-bottom:18px;
+  }
+  .quiz-progress{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+    display:flex;
+    justify-content:space-between;
+  }
+  .progress-bar{
+    height:4px;
+    background:var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .progress-bar .fill{
+    height:100%;
+    background:var(--green);
+    transition:width .25s ease;
+  }
+  .question-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:36px 32px;
+    border-radius:14px;
+    box-shadow:var(--shadow);
+  }
+  .question-card .tema-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--green);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .question-card h2{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    margin:0 0 28px;
+    line-height:1.3;
+  }
+  .axis-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .axis-row .lbl{
+    font-size:12px;
+    color:var(--ink-soft);
+    flex:1;
+    line-height:1.4;
+  }
+  .axis-row .lbl.left{text-align:right;}
+  input[type=range]{
+    flex:2;
+    accent-color:var(--green);
+    height:4px;
+  }
+  .quiz-actions{
+    margin-top:32px;
+    display:flex;
+    justify-content:space-between;
+  }
+  button.primary{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    background:var(--green);
+    color:#fff;
+    border:none;
+    padding:13px 24px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  button.primary:hover{background:var(--green-deep);}
+  button.ghost{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    background:none;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:13px 24px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  button.ghost:disabled{opacity:.4;cursor:default;}
+
+  .result-list{margin-top:20px;}
+  .result-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .result-row .rank{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:20px;
+    font-weight:600;
+    color:var(--green);
+    width:26px;
+  }
+  .result-row .info{min-width:200px;}
+  .result-row .info .nome{font-family:'Fraunces',serif;font-weight:600;font-size:15.5px;}
+  .result-row .info .partido{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);}
+  .result-row .bar-wrap{flex:1;height:7px;background:#CFCBBC55;border-radius:4px;overflow:hidden;}
+  .result-row .bar{height:100%;background:var(--green);border-radius:4px;}
+  .result-row .pct{font-family:'IBM Plex Mono',monospace;font-size:13px;width:44px;text-align:right;}
+
+  .note{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:6px;
+    line-height:1.55;
+  }
+  .placeholder-banner{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    background:#B08D2B14;
+    border:1px dashed var(--gold);
+    color:#7a5f1c;
+    padding:11px 16px;
+    margin-bottom:22px;
+    border-radius:8px;
+    line-height:1.6;
+  }
+  .placeholder-banner code{background:#00000010;padding:1px 5px;border-radius:3px;}
+
+  @media (max-width:600px){
+    .card{grid-template-columns:auto 1fr; grid-template-areas:"a who" "a status" "posicao posicao";}
+    .card .avatar{grid-area:a;}
+    .card .who{grid-area:who;}
+    .card .status{grid-area:status; justify-self:start;}
+    .card .posicao{grid-area:posicao; margin-top:8px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow">Eleições Gerais 2026 · 1º turno em 4 de outubro</div>
+  <div class="brand">Vote com base no que os candidatos <em>de fato propõem</em>, não no que dizem nas redes.</div>
+  <p class="subhead">Compare as propostas dos candidatos à Presidência por tema, ou faça o quiz de afinidade e descubra quem está mais alinhado com o que você defende.</p>
+  <div class="status-strip">
+    <span>Candidatos: <b>13</b></span>
+    <span>Temas: <b>7</b></span>
+    <span>Fonte: <b>Programas oficiais registrados no TSE</b> (a partir de 15/08/2026)</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="active" data-view="comparador">Comparador de propostas</button>
+  <button data-view="quiz">Quiz de afinidade</button>
+</nav>
+
+<main>
+
+  <div class="placeholder-banner">
+    Esqueleto funcional — as posições ainda não foram preenchidas com os programas oficiais. Assim que a planilha estiver pronta, cole os dados no array <code>DADOS</code> no topo do código. Fotos: adicione a URL de cada candidato em <code>CANDIDATOS[i].foto</code> (fonte: site oficial de campanha/partido).
+  </div>
+
+  <!-- ================= COMPARADOR ================= -->
+  <section id="view-comparador" class="view active">
+    <div class="tema-select" id="temaSelect"></div>
+    <div class="eixo-strip" id="eixoStrip"></div>
+    <div id="cards"></div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="view-quiz" class="view">
+    <div id="quizArea"></div>
+  </section>
+
+</main>
+
+<script>
+/* =========================================================
+   DADOS — mesma estrutura da aba "Propostas" da planilha.
+   eixo: -5 (mais à direita) a +5 (mais à esquerda), ou null
+   se ainda não preenchido. foto: URL de imagem (opcional) —
+   deixe null para usar o avatar com iniciais.
+   ========================================================= */
+
+const TEMAS = [
+  {
+    nome: "Economia", esq: "Estado mínimo / livre mercado", dir: "Estado forte / intervencionismo",
+    facetas: [
+      "Papel do Estado na economia: privatizações vs. estatização/planejamento",
+      "Carga tributária: menos impostos e gasto vs. mais impostos e gasto social",
+    ]
+  },
+  {
+    nome: "Saúde", esq: "Priorizar sistema privado", dir: "Fortalecer SUS / público universal",
+    facetas: [
+      "Prioridade de investimento em saúde: sistema privado vs. SUS",
+      "Gasto público em saúde: conter vs. expandir",
+    ]
+  },
+  {
+    nome: "Educação", esq: "Gestão descentralizada / privada", dir: "Investimento público centralizado",
+    facetas: [
+      "Gestão escolar: municipal/privada vs. centralização federal",
+      "Ensino superior: mensalidade/vagas restritas vs. gratuidade/expansão",
+    ]
+  },
+  {
+    nome: "Segurança Pública", esq: "Endurecimento penal / repressão", dir: "Foco em direitos e reinserção",
+    facetas: [
+      "Abordagem penal: endurecimento/mais prisão vs. reinserção/alternativas penais",
+      "Posse de armas: facilitar vs. restringir",
+    ]
+  },
+  {
+    nome: "Meio Ambiente", esq: "Priorizar produção/exploração", dir: "Priorizar preservação/regulação",
+    facetas: [
+      "Uso de recursos naturais: exploração agropecuária/mineral vs. preservação",
+      "Regulação ambiental: menos regras vs. mais fiscalização",
+    ]
+  },
+  {
+    nome: "Trabalho e Previdência", esq: "Flexibilização de direitos", dir: "Ampliação de direitos e proteção",
+    facetas: [
+      "Direitos trabalhistas: flexibilização vs. mais proteção",
+      "Previdência: regras mais restritas vs. regras mais brandas",
+    ]
+  },
+  {
+    nome: "Relações Exteriores", esq: "Alinhamento ocidental (EUA/UE)", dir: "Alinhamento multipolar (Sul Global/BRICS)",
+    facetas: [
+      "Alinhamento internacional: Ocidente (EUA/UE) vs. Sul Global/BRICS",
+      "Integração: acordos bilaterais com potências vs. blocos como Mercosul",
+    ]
+  },
+];
+
+const CANDIDATOS = [
+  "Lula (PT)", "Flávio Bolsonaro (PL)", "Renan Santos (Missão)", "Ronaldo Caiado (PSD)",
+  "Romeu Zema (Novo)", "Augusto Cury (Avante)", "Joaquim Barbosa (DC)", "Hertz Dias (PSTU)",
+  "Samara Martins (UP)", "Cabo Daciolo (Mobiliza)", "Edmilson Costa (PCB)", "Heró Bezerra (PRTB)",
+  "Rui Costa Pimenta (PCO)"
+].map(s => {
+  const m = s.match(/^(.*) \((.*)\)$/);
+  return { nome: m[1], partido: m[2], foto: null }; // cole a URL da foto oficial aqui quando tiver
+});
+
+// DADOS[temaNome][candidatoNome] = { texto, eixo, fonte, status }
+const DADOS = {};
+TEMAS.forEach(t => {
+  DADOS[t.nome] = {};
+  CANDIDATOS.forEach(c => {
+    DADOS[t.nome][c.nome] = { texto: null, eixo: null, fonte: null, status: null };
+  });
+});
+
+function iniciais(nome){
+  return nome.split(" ").filter(Boolean).slice(0,2).map(p=>p[0]).join("").toUpperCase();
+}
+function avatarHTML(c){
+  if (c.foto){
+    return `<div class="avatar"><img src="${c.foto}" alt="${c.nome}"></div>`;
+  }
+  return `<div class="avatar">${iniciais(c.nome)}</div>`;
+}
+
+/* ============== COMPARADOR ============== */
+let temaAtual = TEMAS[0].nome;
+
+function renderTemaSelect(){
+  const el = document.getElementById("temaSelect");
+  el.innerHTML = TEMAS.map(t =>
+    `<button data-t="${t.nome}" class="${t.nome===temaAtual?'active':''}">${t.nome}</button>`
+  ).join("");
+  el.querySelectorAll("button").forEach(b => {
+    b.addEventListener("click", () => { temaAtual = b.dataset.t; renderComparador(); });
+  });
+}
+
+function renderComparador(){
+  renderTemaSelect();
+  const t = TEMAS.find(x => x.nome === temaAtual);
+  document.getElementById("eixoStrip").innerHTML =
+    `<span>${t.esq}</span><span>${t.dir}</span>`;
+
+  const cardsEl = document.getElementById("cards");
+  cardsEl.innerHTML = CANDIDATOS.map(c => {
+    const d = DADOS[t.nome][c.nome];
+    const statusClass = d.status === "Oficial" ? "oficial" : d.status === "Provisório" ? "provisorio" : "pendente-tag";
+    const statusLabel = d.status || "Sem dado";
+    const texto = d.texto || "Posição ainda não registrada.";
+    return `<div class="card">
+      ${avatarHTML(c)}
+      <div class="who">
+        <div class="nome">${c.nome}</div>
+        <div class="partido">${c.partido}</div>
+      </div>
+      <div class="posicao ${d.texto ? '' : 'pendente'}">${texto}</div>
+      <div class="status ${statusClass}">${statusLabel}</div>
+    </div>`;
+  }).join("");
+}
+
+/* ============== QUIZ ============== */
+// lista linear de perguntas: {temaIndex, facetaIndex, texto}
+const PERGUNTAS = [];
+TEMAS.forEach((t, ti) => {
+  t.facetas.forEach((f, fi) => PERGUNTAS.push({ temaIndex: ti, facetaIndex: fi, texto: f }));
+});
+
+let quizIndex = 0;
+let respostas = new Array(PERGUNTAS.length).fill(0);
+let quizFinalizado = false;
+
+function renderQuiz(){
+  const area = document.getElementById("quizArea");
+  if (quizFinalizado){ renderResultado(); return; }
+
+  const p = PERGUNTAS[quizIndex];
+  const t = TEMAS[p.temaIndex];
+  const pct = Math.round(((quizIndex) / PERGUNTAS.length) * 100);
+
+  area.innerHTML = `
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress"><span>Pergunta ${quizIndex+1} de ${PERGUNTAS.length}</span><span>${t.nome}</span></div>
+      <div class="progress-bar"><div class="fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="tema-tag">${t.nome}</div>
+      <h2>${p.texto}</h2>
+      <div class="axis-row">
+        <div class="lbl left">${t.esq}</div>
+        <input type="range" min="-5" max="5" step="1" value="${respostas[quizIndex]}" id="slider">
+        <div class="lbl">${t.dir}</div>
+      </div>
+      <div class="quiz-actions">
+        <button class="ghost" id="btnBack" ${quizIndex===0?"disabled":""}>Voltar</button>
+        <button class="primary" id="btnNext">${quizIndex===PERGUNTAS.length-1 ? "Ver resultado" : "Próxima"}</button>
+      </div>
+    </div>
+  `;
+  const slider = document.getElementById("slider");
+  slider.addEventListener("input", () => { respostas[quizIndex] = parseInt(slider.value); });
+
+  document.getElementById("btnNext").addEventListener("click", () => {
+    respostas[quizIndex] = parseInt(slider.value);
+    if (quizIndex === PERGUNTAS.length - 1){ quizFinalizado = true; }
+    else { quizIndex++; }
+    renderQuiz();
+  });
+  document.getElementById("btnBack").addEventListener("click", () => {
+    quizIndex = Math.max(0, quizIndex - 1);
+    renderQuiz();
+  });
+}
+
+function mediaPorTema(){
+  // agrupa as respostas (por pergunta) em média por tema
+  return TEMAS.map((t, ti) => {
+    const idxs = PERGUNTAS.map((p,i)=>({p,i})).filter(o => o.p.temaIndex === ti).map(o=>o.i);
+    const soma = idxs.reduce((s,i) => s + respostas[i], 0);
+    return soma / idxs.length;
+  });
+}
+
+function renderResultado(){
+  const area = document.getElementById("quizArea");
+  const userPorTema = mediaPorTema(); // uma posição -5..5 por tema
+
+  const scores = CANDIDATOS.map(c => {
+    let total = 0, count = 0;
+    TEMAS.forEach((t, i) => {
+      const eixo = DADOS[t.nome][c.nome].eixo;
+      if (eixo === null || eixo === undefined) return;
+      const dist = Math.abs(userPorTema[i] - eixo); // 0..10
+      total += (10 - dist);
+      count++;
+    });
+    const pct = count > 0 ? Math.round((total / (count * 10)) * 100) : null;
+    return { ...c, pct, count };
+  }).sort((a,b) => (b.pct ?? -1) - (a.pct ?? -1));
+
+  area.innerHTML = `
+    <div class="question-card">
+      <h2>Seu resultado</h2>
+      <div class="note">Ranking de afinidade com base nas suas respostas em ${PERGUNTAS.length} perguntas (2 por tema). Candidatos sem posição registrada em nenhum tema aparecem sem percentual (dado pendente, não "0% de afinidade").</div>
+      <div class="result-list">
+        ${scores.map((s, i) => `
+          <div class="result-row">
+            ${avatarHTML(s)}
+            <div class="info">
+              <div class="nome">${s.nome}</div>
+              <div class="partido">${s.partido}</div>
+            </div>
+            <div class="bar-wrap"><div class="bar" style="width:${s.pct ?? 0}%"></div></div>
+            <div class="pct">${s.pct !== null ? s.pct + "%" : "—"}</div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="quiz-actions">
+        <button class="ghost" id="btnRestart">Refazer o quiz</button>
+      </div>
+    </div>
+  `;
+  document.getElementById("btnRestart").addEventListener("click", () => {
+    quizIndex = 0; quizFinalizado = false; respostas = new Array(PERGUNTAS.length).fill(0);
+    renderQuiz();
+  });
+}
+
+/* ============== NAV / INIT ============== */
+document.querySelectorAll("nav.tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("nav.tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    document.getElementById("view-" + btn.dataset.view).classList.add("active");
+  });
+});
+
+renderComparador();
+renderQuiz();
+</script>
+
+</body>
+</html>
